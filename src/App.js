@@ -16,13 +16,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
-interface Film {
-  VendorID: number;
-  Vendor_Code: string;
-  Vender_Name: string;
-  TaxIDNo: string;
-}
-
 function sleep(delay = 0) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
@@ -31,7 +24,7 @@ function sleep(delay = 0) {
 
 export default function SignUp() {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<readonly Film[]>([]);
+  const [options, setOptions] = React.useState([]);
   const [optionsII, setOptionsII] = React.useState();
   const loading = open && options.length === 0;
 
