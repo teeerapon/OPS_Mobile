@@ -40,7 +40,7 @@ export default function SignUp() {
     };
     try {
       await axios
-        .get('http://localhost:32001/api/OPS_Mobile_List_Vender', {
+        .get('http://vpnptec.dyndns.org:32001/api/OPS_Mobile_List_Vender', {
           headers,
         })
         .then((response) => {
