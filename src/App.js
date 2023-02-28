@@ -32,53 +32,35 @@ export default function SignUp() {
   const [displayName, setDisplayName] = React.useState();
   const [statusMessage, setStatusMessage] = React.useState();
   const [userId, setUserId] = React.useState();
+  const [venderCode, setVenderCode] = React.useState();
   const [name, setName] = React.useState();
   const [lastname, setLastname] = React.useState();
   const [phoneNumber, setPhoneNumber] = React.useState();
 
-  const submitForm = async () => {
+  const submitForm = async (event) => {
+    event.preventDefault();
     const headers = {
       Authorization: 'application/json; charset=utf-8',
       Accept: 'application/json',
     };
-    const http = 'https://631c-61-7-147-129.ap.ngrok.io/api/STrack_Registation';
+    const http = 'http://localhost:32001/api/STrack_Registation';
 
-    console.log({
-      headers: headers,
-      url: http,
-      body: {
-        name: name,
-        lastname: lastname,
-        phoneNumber: phoneNumber,
-      },
+    const body = {
+      userid: userId,
+      venderCode: venderCode,
+      name: name,
+      lastname: lastname,
+      phoneNumber: phoneNumber,
+    };
+
+    await axios.post(http, body, { headers }).then((res) => {
+      if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
+        alert(res.data.messages[0].text);
+      } else {
+        liff.closeWindow();
+      }
     });
   };
-
-  const testApi = async () => {
-    const headers = {
-      Authorization: 'application/json; charset=utf-8',
-      Accept: 'application/json',
-    };
-    try {
-      await axios
-        .get(
-          'https://631c-61-7-147-129.ap.ngrok.io/api/OPS_Mobile_List_Vender',
-          {
-            headers,
-          }
-        )
-        .then((response) => {
-          setOptionsII([]);
-          console.log(response.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  React.useEffect(() => {
-    testApi();
-  }, []);
 
   React.useEffect(() => {
     let active = true;
@@ -91,7 +73,21 @@ export default function SignUp() {
       await sleep(1e3); // For demo purposes.
 
       if (active) {
-        setOptions(optionsII);
+        const headers = {
+          Authorization: 'application/json; charset=utf-8',
+          Accept: 'application/json',
+        };
+        try {
+          await axios
+            .get('http://localhost:32001/api/OPS_Mobile_List_Vender', {
+              headers,
+            })
+            .then((response) => {
+              setOptions(response.data);
+            });
+        } catch (error) {
+          console.log(error);
+        }
       }
     })();
 
@@ -105,15 +101,6 @@ export default function SignUp() {
       setOptions([]);
     }
   }, [open]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
 
   const logout = () => {
     liff.logout();
@@ -193,7 +180,7 @@ export default function SignUp() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={submitForm}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
@@ -264,6 +251,9 @@ export default function SignUp() {
                     }
                     getOptionLabel={(option) => option.Vendor_Name}
                     options={options}
+                    onChange={(event, newValue) => {
+                      setVenderCode(newValue.Vendor_Code);
+                    }}
                     loading={loading}
                     renderInput={(params) => (
                       <TextField
@@ -288,7 +278,6 @@ export default function SignUp() {
               <Button
                 type="submit"
                 fullWidth
-                onClick={submitForm}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
