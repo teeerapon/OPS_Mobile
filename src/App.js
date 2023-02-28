@@ -32,6 +32,27 @@ export default function SignUp() {
   const [displayName, setDisplayName] = React.useState();
   const [statusMessage, setStatusMessage] = React.useState();
   const [userId, setUserId] = React.useState();
+  const [name, setName] = React.useState();
+  const [lastname, setLastname] = React.useState();
+  const [phoneNumber, setPhoneNumber] = React.useState();
+
+  const submitForm = async () => {
+    const headers = {
+      Authorization: 'application/json; charset=utf-8',
+      Accept: 'application/json',
+    };
+    const http = 'https://631c-61-7-147-129.ap.ngrok.io/api/STrack_Registation';
+
+    console.log({
+      headers: headers,
+      url: http,
+      body: {
+        name: name,
+        lastname: lastname,
+        phoneNumber: phoneNumber,
+      },
+    });
+  };
 
   const testApi = async () => {
     const headers = {
@@ -40,12 +61,15 @@ export default function SignUp() {
     };
     try {
       await axios
-        .get('http://vpnptec.dyndns.org:32001/api/OPS_Mobile_List_Vender', {
-          headers,
-        })
+        .get(
+          'https://631c-61-7-147-129.ap.ngrok.io/api/OPS_Mobile_List_Vender',
+          {
+            headers,
+          }
+        )
         .then((response) => {
-          console.log(response);
-          setOptionsII(response.data);
+          setOptionsII([]);
+          console.log(response.data);
         });
     } catch (error) {
       console.log(error);
@@ -116,7 +140,6 @@ export default function SignUp() {
     liff
       .getProfile()
       .then((profile) => {
-        console.log(profile);
         setDisplayName(profile.displayName);
         setStatusMessage(profile.statusMessage);
         setUserId(profile.userId);
@@ -192,6 +215,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     label="ชื่อจริง"
+                    onChange={(event) => setName(event.target.value)}
                     autoFocus
                   />
                 </Grid>
@@ -201,6 +225,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     label="นามสกุล"
+                    onChange={(event) => setLastname(event.target.value)}
                     autoComplete="family-name"
                   />
                 </Grid>
@@ -209,6 +234,7 @@ export default function SignUp() {
                     required
                     fullWidth
                     size="small"
+                    onChange={(event) => setPhoneNumber(event.target.value)}
                     label="เบอร์โทรศัทพ์"
                   />
                 </Grid>
@@ -262,6 +288,7 @@ export default function SignUp() {
               <Button
                 type="submit"
                 fullWidth
+                onClick={submitForm}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
