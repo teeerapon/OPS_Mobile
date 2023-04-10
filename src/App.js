@@ -57,7 +57,7 @@ export default function SignUp() {
       phoneNumber: phoneNumber,
     };
 
-    await axios.post(http, { headers }, body).then((res) => {
+    await axios.post(http, { headers, mode: 'no-cors' }, body).then((res) => {
       if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
         alert(res.data.messages[0].text);
       } else {
@@ -90,6 +90,7 @@ export default function SignUp() {
         try {
           await axios
             .get(http, {
+              mode: 'no-cors',
               headers,
             })
             .then((response) => {
