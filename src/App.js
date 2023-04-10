@@ -81,7 +81,7 @@ export default function SignUp() {
           await axios
             .get('https://de6e-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender', {
               headers,
-              , mode: 'no-cors'
+              mode: 'no-cors'
             })
             .then((response) => {
               setOptions(response.data);
