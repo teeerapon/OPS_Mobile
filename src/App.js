@@ -79,7 +79,7 @@ export default function SignUp() {
         };
         try {
           await axios
-            .get('http://localhost:32001/api/OPS_Mobile_List_Vender', {
+            .get('https://de6e-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender', {
               headers,
             })
             .then((response) => {
