@@ -14,6 +14,7 @@ import liff from '@line/liff';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
