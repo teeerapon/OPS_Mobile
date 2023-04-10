@@ -39,6 +39,7 @@ export default function SignUp() {
 
   const submitForm = async (event) => {
     event.preventDefault();
+
     const headers = {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ export default function SignUp() {
       phoneNumber: phoneNumber,
     };
 
-    await axios.post(http, body, { headers, mode: 'no-cors' }).then((res) => {
+    await axios.post(http, body, { mode: 'no-cors', headers }).then((res) => {
       if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
         alert(res.data.messages[0].text);
       } else {
@@ -89,8 +90,8 @@ export default function SignUp() {
         try {
           await axios
             .get(http, {
-              headers,
               mode: 'no-cors',
+              headers,
             })
             .then((response) => {
               setOptions(response.data);
