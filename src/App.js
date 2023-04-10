@@ -42,6 +42,9 @@ export default function SignUp() {
     const headers = {
       Authorization: 'application/json; charset=utf-8',
       Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST',
+      'Access-Control-Allow-Headers': 'Content-Type',
     };
     const http =
       'https://de6e-61-7-147-129.ngrok-free.app/api/STrack_Registation';
@@ -54,7 +57,7 @@ export default function SignUp() {
       phoneNumber: phoneNumber,
     };
 
-    await axios.post(http, body, { headers, mode: 'no-cors' }).then((res) => {
+    await axios.post(http, body, { headers }).then((res) => {
       if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
         alert(res.data.messages[0].text);
       } else {
@@ -77,6 +80,9 @@ export default function SignUp() {
         const headers = {
           Authorization: 'application/json; charset=utf-8',
           Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
         };
         try {
           await axios
@@ -84,7 +90,6 @@ export default function SignUp() {
               'https://de6e-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender',
               {
                 headers,
-                mode: 'no-cors',
               }
             )
             .then((response) => {
