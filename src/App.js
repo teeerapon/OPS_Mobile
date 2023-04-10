@@ -14,7 +14,6 @@ import liff from '@line/liff';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Autocomplete from '@mui/material/Autocomplete';
-import axios from 'axios';
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -58,7 +57,7 @@ export default function SignUp() {
     };
 
     await axios
-      .post(http, body, { mode: 'no-cors', headers, withCredentials: true })
+      .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
       .then((res) => {
         if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
           alert(res.data.messages[0].text);
