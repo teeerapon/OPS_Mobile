@@ -47,7 +47,8 @@ export default function SignUp() {
       Accept: 'application/json',
     };
     const http =
-      'https://de6e-61-7-147-129.ngrok-free.app/api/STrack_Registation';
+      // 'https://de6e-61-7-147-129.ngrok-free.app/api/STrack_Registation';
+      'http://vpnptec.dyndns.org:32001/api/STrack_Registation';
 
     const body = {
       userid: userId,
@@ -87,7 +88,8 @@ export default function SignUp() {
         };
 
         const http =
-          'https://de6e-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender';
+          // 'https://de6e-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender';
+          'http://vpnptec.dyndns.org:32001/api/OPS_Mobile_List_Vender';
 
         try {
           await axios
