@@ -43,9 +43,10 @@ export default function SignUp() {
     const headers = {
       Authorization: 'application/json; charset=utf-8',
       Accept: 'application/json',
+      'ngrok-skip-browser-warning': '69420',
     };
     const http =
-      'https://cfb8-49-228-224-181.ngrok-free.app/api/STrack_Registation';
+      'https://5f02-61-7-147-129.ngrok-free.app/api/STrack_Registation';
     // 'http://vpnptec.dyndns.org:32001/api/STrack_Registation';
     // 'http://localhost:32001/api/STrack_Registation';
 
@@ -82,10 +83,11 @@ export default function SignUp() {
         const headers = {
           Authorization: 'application/json; charset=utf-8',
           Accept: 'application/json',
+          'ngrok-skip-browser-warning': '69420',
         };
 
         const http =
-          'https://cfb8-49-228-224-181.ngrok-free.app/api/OPS_Mobile_List_Vender';
+          'https://5f02-61-7-147-129.ngrok-free.app/api/OPS_Mobile_List_Vender';
         // 'http://vpnptec.dyndns.org:32001/api/OPS_Mobile_List_Vender';
         // 'http://localhost:32001/api/OPS_Mobile_List_Vender';
 
