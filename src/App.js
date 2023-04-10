@@ -99,7 +99,11 @@ export default function SignUp() {
               withCredentials: true,
             })
             .then((response) => {
-              setOptions(response.data);
+              setOptions(
+                response.data.filter(function (el) {
+                  return el.VendorID != null;
+                })
+              );
             });
         } catch (error) {
           console.log(error);
