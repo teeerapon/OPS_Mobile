@@ -272,9 +272,11 @@ export default function SignUp() {
                     getOptionLabel={(option) => option.Vendor_Name}
                     options={options}
                     onChange={(event, newValue) => {
-                      setVenderCode(
-                        newValue.Vendor_Code ? newValue.Vendor_Code : null
-                      );
+                      if (newValue) {
+                        setVenderCode(newValue.Vendor_Code);
+                      } else {
+                        setVenderCode(undefined);
+                      }
                     }}
                     loading={loading}
                     renderInput={(params) => (
