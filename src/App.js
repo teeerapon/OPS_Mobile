@@ -41,8 +41,6 @@ export default function SignUp() {
     event.preventDefault();
 
     const headers = {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
       Authorization: 'application/json; charset=utf-8',
       Accept: 'application/json',
     };
@@ -82,8 +80,6 @@ export default function SignUp() {
 
       if (active) {
         const headers = {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
           Authorization: 'application/json; charset=utf-8',
           Accept: 'application/json',
         };
