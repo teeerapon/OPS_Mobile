@@ -43,7 +43,7 @@ export default function SignUp() {
       Authorization: 'application/json; charset=utf-8',
       Accept: 'application/json',
     };
-    const http = 'https://77d1-49-0-64-71.ap.ngrok.io/api/STrack_Registation';
+    const http = 'https://de6e-61-7-147-129.ngrok-free.app/api/STrack_Registation';
 
     const body = {
       userid: userId,
