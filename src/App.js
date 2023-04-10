@@ -57,15 +57,13 @@ export default function SignUp() {
       phoneNumber: phoneNumber,
     };
 
-    await axios
-      .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
-      .then((res) => {
-        if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
-          alert(res.data.messages[0].text);
-        } else {
-          liff.closeWindow();
-        }
-      });
+    await axios.post(http, { headers }, body).then((res) => {
+      if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
+        alert(res.data.messages[0].text);
+      } else {
+        liff.closeWindow();
+      }
+    });
   };
 
   React.useEffect(() => {
@@ -92,9 +90,7 @@ export default function SignUp() {
         try {
           await axios
             .get(http, {
-              mode: 'no-cors',
               headers,
-              withCredentials: true,
             })
             .then((response) => {
               setOptions(response.data);
