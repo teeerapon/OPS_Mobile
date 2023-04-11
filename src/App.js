@@ -36,6 +36,7 @@ export default function SignUp() {
   const [name, setName] = React.useState();
   const [lastname, setLastname] = React.useState();
   const [phoneNumber, setPhoneNumber] = React.useState();
+  const [email, setEmail] = React.useState();
 
   const submitForm = async (event) => {
     event.preventDefault();
@@ -48,24 +49,27 @@ export default function SignUp() {
     const http =
       'https://5f02-61-7-147-129.ngrok-free.app/api/STrack_Registation';
     // 'http://vpnptec.dyndns.org:32001/api/STrack_Registation';
-    // 'http://localhost:32001/api/STrack_Registation';
+    //'http://localhost:32001/api/STrack_Registation';
 
     const body = {
       userid: userId,
       venderCode: venderCode,
+      email: email,
       name: name,
       lastname: lastname,
       phoneNumber: phoneNumber,
     };
 
     await axios
-      .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
+      // .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
+      .post(http, body, { headers })
       .then((res) => {
-        if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
-          alert(res.data.messages[0].text);
-        } else {
-          liff.closeWindow();
-        }
+        liff.closeWindow();
+        // if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
+        //   alert(res.data.messages[0].text);
+        // } else {
+        //   liff.closeWindow();
+        // }
       });
   };
 
@@ -250,6 +254,7 @@ export default function SignUp() {
                     required
                     fullWidth
                     size="small"
+                    onChange={(event) => setEmail(event.target.value)}
                     label="Email Address"
                     autoComplete="email"
                   />
