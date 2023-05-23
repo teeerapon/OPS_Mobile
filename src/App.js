@@ -37,6 +37,10 @@ export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = React.useState();
   const [email, setEmail] = React.useState();
 
+  const handleCloseLiff = () => {
+    liff.closeWindow();
+  };
+
   const submitForm = async (event) => {
     event.preventDefault();
 
@@ -332,7 +336,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={liff.closeWindow()}
+              onClick={handleCloseLiff}
               sx={{ mt: 3, mb: 2 }}
             >
               Success
