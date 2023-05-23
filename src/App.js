@@ -325,17 +325,21 @@ export default function SignUp() {
       <React.Fragment>
         <Box
           sx={{
-            marginTop: 30,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
+          <Typography variant="body2" color="text.secondary" align="center">
+            ลงทะเบียนสำเร็จ
+          </Typography>
           <Stack direction="row" spacing={3}>
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              color="success"
               onClick={handleCloseLiff}
               sx={{ mt: 3, mb: 2 }}
             >
