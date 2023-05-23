@@ -25,6 +25,7 @@ export default function SignUp() {
   const [options, setOptions] = React.useState([]);
   const [optionsII, setOptionsII] = React.useState();
   const loading = open && options.length === 0;
+  const [step, setStep] = React.useState(0);
 
   const [idToken, setIdToken] = React.useState();
   const [displayName, setDisplayName] = React.useState();
@@ -62,7 +63,7 @@ export default function SignUp() {
       // .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
       .post(http, body, { headers })
       .then((res) => {
-        liff.closeWindow();
+        setStep(1);
         // if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
         //   alert(res.data.messages[0].text);
         // } else {
@@ -180,7 +181,7 @@ export default function SignUp() {
         </Box>
       </React.Fragment>
     );
-  } else {
+  } else if (step === 0) {
     return (
       <React.Fragment>
         <Container component="main" maxWidth="xs">
@@ -313,6 +314,31 @@ export default function SignUp() {
             </Box>
           </Box>
         </Container>
+      </React.Fragment>
+    );
+  } else if (step === 1) {
+    return (
+      <React.Fragment>
+        <Box
+          sx={{
+            marginTop: 30,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Stack direction="row" spacing={3}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              onClick={liff.closeWindow()}
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Success
+            </Button>
+          </Stack>
+        </Box>
       </React.Fragment>
     );
   }
