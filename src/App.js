@@ -347,11 +347,11 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              color="success"
+              color={responseURL === 'ลงทะเบียนสำเร็จ' ? 'success' : 'error'}
               onClick={handleCloseLiff}
               sx={{ mt: 3, mb: 2 }}
             >
-              Success
+              OK
             </Button>
           </Stack>
         </Box>
