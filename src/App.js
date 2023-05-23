@@ -39,6 +39,13 @@ export default function SignUp() {
 
   const [responseURL, setResponseURL] = React.useState();
 
+  const lineConfig = {
+    channelAccessToken: `3qb6FW32Bl1O6pPmp9BtHa9MVhl1NiFUAK5KP6n5OwcGR3rWiL7uvQpxbUUe3DmJkpl88kOR7E535cj6J0iRWM5TL48iAxt0xOKtwrTN4t2srHoXQmULtY9lXorVABHRsaAzQmuAeoUy`,
+    channelSecret: `f144f871e6cc656ef6af579274310739`,
+  };
+
+  const client = new line.Client(lineConfig);
+
   const handleCloseLiff = () => {
     liff.closeWindow();
   };
