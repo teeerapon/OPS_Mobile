@@ -44,7 +44,7 @@ export default function SignUp() {
     channelSecret: `f144f871e6cc656ef6af579274310739`,
   };
 
-  const client = new line.Client(lineConfig);
+  // const client = new line.Client(lineConfig);
 
   const handleCloseLiff = () => {
     liff.closeWindow();
