@@ -37,6 +37,8 @@ export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = React.useState();
   const [email, setEmail] = React.useState();
 
+  const [responseURL, setResponseURL] = React.useState();
+
   const handleCloseLiff = () => {
     liff.closeWindow();
   };
@@ -66,8 +68,11 @@ export default function SignUp() {
     await axios
       // .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
       .post(http, body, { headers })
-      .then((res) => {
-        setStep(1);
+      .then((response) => {
+        if (response[0].res) {
+          setResponseURL(response[0].res);
+          setStep(1);
+        }
         // if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
         //   alert(res.data.messages[0].text);
         // } else {
@@ -332,7 +337,7 @@ export default function SignUp() {
           }}
         >
           <Typography variant="body2" color="text.secondary" align="center">
-            ลงทะเบียนสำเร็จ
+            {responseURL}
           </Typography>
           <Stack direction="row" spacing={3}>
             <Button
