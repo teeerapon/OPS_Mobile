@@ -48,6 +48,7 @@ export default function SignUp() {
 
   const handleCloseLiff = () => {
     liff.closeWindow();
+    window.close();
   };
 
   const submitForm = async (event) => {
@@ -76,15 +77,10 @@ export default function SignUp() {
       // .post(http, { mode: 'no-cors', headers, withCredentials: true }, body)
       .post(http, body, { headers })
       .then((response) => {
-        if (response[0].res) {
-          setResponseURL(response[0].res);
+        if (response.data[0].res) {
+          setResponseURL(response.data[0].res);
           setStep(1);
         }
-        // if (res.data.messages[0].text === 'ผู้ใช้งานนี้มีการลงทะเบียนแล้ว') {
-        //   alert(res.data.messages[0].text);
-        // } else {
-        //   liff.closeWindow();
-        // }
       });
   };
 
